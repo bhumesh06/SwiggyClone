@@ -25,12 +25,11 @@ const Body =()=>{
      //while fetching data it will occur some error of cors so please download extension (cors chrome extension)
      const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
      const json = await data.json();
-     console.log(json)
+     //console.log(json)
      //console.log(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants)
  
      //optional chaining
-     setlistofrest(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
- 
+     setlistofrest(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
    } catch (error) {
     console.log("error", error)
    }
@@ -39,7 +38,9 @@ const Body =()=>{
  const fetchdata2 = async()=>{
   const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
   const json = await data.json()
-  setlistofrest2(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  console.log(json)
+  console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  setlistofrest2(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 }
 
 
@@ -53,10 +54,9 @@ const Body =()=>{
   )
  }
 
- //console.log(listofrest)
+ 
 
 //return listofrest?.length === 0 ? ( <Shimmer/>) : (
-
 
 return (
   <div className="body" >
@@ -84,6 +84,8 @@ return (
        </div>
       
         <div className="grid grid-cols-4">
+
+         
          
           {
             listofrest.map( restaurant =>
@@ -120,6 +122,7 @@ return (
       </div>
   </div>
     )
+    
   }
 
   
